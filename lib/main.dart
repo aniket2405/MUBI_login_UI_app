@@ -76,10 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                     children: <Widget>[
                       AnimatedContainer(
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        duration: Duration(
-                          milliseconds: 1000,
-                        ),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                          duration: Duration(
+                            milliseconds: 1000,
+                          ),
                           margin: EdgeInsets.only(top: _headingTop),
                           child: Padding(
                             padding: EdgeInsets.only(left: 67),
@@ -104,13 +104,12 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left:30),
+                        padding: EdgeInsets.only(left: 30),
                         child: Text('HAND-PICKED',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                               fontSize: 25,
                               color: _headingColor,
-                              
                             )),
                       ),
                       Padding(
@@ -152,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(50)),
                           child: Center(
                             child: Text(
-                              'LOGIN/SIGNUP',
+                              'Get Started',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -170,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
           child: AnimatedContainer(
+              padding: EdgeInsets.all(32),
               curve: Curves.fastLinearToSlowEaseIn,
               duration: Duration(
                 milliseconds: 700,
@@ -179,23 +179,103 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          PrimaryButton(),
-                        ]
+                      topRight: Radius.circular(30))),
+              child: Column(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(bottom: 20),
+                        child: Text(
+                          "Login To Continue",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w700,
+                        )
                       )
                       ),
+                      Container(
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 40,
+                              child: Icon(Icons.email,
+                              size: 20,
+                              color: Colors.black),
+                            ),
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: "Enter your email"
+                                )
+                              )
+                            )
+                          ],
+                        )
+                      )
+                    ], 
+                  ),
+                  SizedBox(height: 20),
+
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 40,
+                              child: Icon(Icons.vpn_key,
+                              size: 20,
+                              color: Colors.black),
+                            ),
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: "Enter your password"
+                                )
+                              )
+                            )
+                          ],
+                        )
+                      ),
+                      SizedBox(height: 40),
+                    PrimaryButton(btnText: "Login"),
+                    SizedBox(height: 20),
+                    Row(
+    children: <Widget>[
+        Expanded(
+            child: Divider(color: Colors.black,
+            height: 20)
+        ),       
+
+        Text("OR",),        
+
+        Expanded(
+            child: Divider(color: Colors.black,
+            height: 20)
+        ),
+    ]
+),
+                      SizedBox(height: 10),
+                    Text('Sign Up',
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  ]),
+                ],
+              )),
         )
       ],
     );
   }
 }
 
-
 class PrimaryButton extends StatefulWidget {
-  const PrimaryButton({ Key? key }) : super(key: key);
+  final String btnText;
+  PrimaryButton({required this.btnText});
+
+  // const PrimaryButton({Key? key}) : super(key: key);
 
   @override
   _PrimaryButtonState createState() => _PrimaryButtonState();
@@ -205,7 +285,19 @@ class _PrimaryButtonState extends State<PrimaryButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: Text('Start'),)
-    );
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: Text(widget.btnText,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              )),
+        ));
   }
 }
+
+
